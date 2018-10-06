@@ -36,8 +36,7 @@
 			<div class="row">
 				<div class="col-md-10 col-sm-12 col-md-offset-2 col-sm-offset-0">
 					<a href="<?php 
-						$url = ($this->idTipoVenda==1)?'funil':'follow';
-						echo base_url("{$url}/edit/$idUser");
+						echo base_url("projetos/edit/$idUser");
 					?>" class="btn btn-default">
 						<i class="glyphicon glyphicon-chevron-left"></i> Voltar
 					</a>

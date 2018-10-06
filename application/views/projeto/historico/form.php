@@ -56,7 +56,7 @@
 		<div class="panel-footer">
 			<div class="row">
 				<div class="col-md-10 col-sm-12 col-md-offset-2 col-sm-offset-0">
-					<a href="<?php echo base_url("macaetec/empresaEdit/$idUser"); ?>" class="btn btn-default">
+					<a href="<?php echo base_url("projetos/edit/$idUser"); ?>" class="btn btn-default">
 						<i class="glyphicon glyphicon-chevron-left"></i> Voltar
 					</a>
 					<button type="submit" class="btn btn-primary" name="post">
