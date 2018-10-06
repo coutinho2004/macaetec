@@ -34,6 +34,13 @@ class Projeto_Historico extends DataMapper {
 		}
 	}
 /**********************************************************************/
+	public function notificacao($user_id){
+		$this->get_where(array('user_id'=>$user_id,'idLido'=>0));
+		$dados['total'] = $this->result_count();
+		$dados['result'] = $this->get_where(array('user_id'=>$user_id,'idLido'=>0));
+
+		return $dados;
+	}
 /**********************************************************************/
 /**********************************************************************/
 }

@@ -158,6 +158,114 @@ class Projetos extends CI_Controller {
 		}
 	}
 /**********************************************************************/
+/**
+ * Parte que controla as Observações do Projeto
+ */
+/**********************************************************************/
+	public function addObservacao($idUser){
+		$o = new Projeto_Observacao(0);
+		$data['idUser'] = $idUser;
+		$data['obj'] = $o;
+		$data['action']  = "projetos/saveObservacao/$idUser";
+		$this->form('projeto/observacao/form',$data);
+	}
+/**********************************************************************/
+	public function editObservacao($idUser=NULL,$id=''){
+		if($id != ''){
+			$o = new Projeto_Observacao($id);
+			$data['idUser'] = $idUser;
+			$data['id'] = $id;
+			$data['obj'] = $o;
+			$data['action'] = "projetos/saveObservacao/$idUser/$id";
+			$this->form('projeto/observacao/form',$data);
+		}else{
+			$this->semRegistro();
+		}
+	}
+/**********************************************************************/
+	public function saveObservacao($idUser=NULL,$id=NULL){
+		if ($this->input->post()){
+			$o = new Projeto_Observacao($id);
+			$o->texto = $this->input->post('texto');
+			$o->projeto_id = $this->input->post('idUser');
+			$o->dataRegistro = date("Y-m-d");
+			if($o->save()){
+				redirect(base_url("projetos/edit/$idUser"));
+			}else{
+				$data['id'] = $id;
+				$data['obj'] = $o;
+				$data['action'] = "projetos/saveObservacao/$idUser".(!$id)?"":"/$id";
+				$this->form('projeto/observacao/form',$data);
+			}
+		}
+	}
+/**********************************************************************/
+	public function destroyObservacao($idUser,$id){
+		$o = new Projeto_Observacao($id);
+		if($o->exists()){
+			$o->delete();
+			redirect(base_url("projetos/edit/$idUser"));
+		}else{
+			$this->semRegistro();
+		}
+	}
+/**********************************************************************/
+/**
+ * Parte que controla os Históricos do Projeto
+ */
+/**********************************************************************/
+	public function addHistorico($idUser){
+		$o = new Projeto_Observacao(0);
+		$data['idUser'] = $idUser;
+		$data['obj'] = $o;
+		$data['action']  = "projetos/saveHistorico/$idUser";
+		$this->form('projeto/historico/form',$data);
+	}
+/**********************************************************************/
+	public function editHistorico($idUser=NULL,$id=''){
+		if($id != ''){
+			$o = new Projeto_Historico($id);
+			$data['idUser'] = $idUser;
+			$data['id'] = $id;
+			$data['obj'] = $o;
+			$data['action'] = "projetos/saveHistorico/$idUser/$id";
+			$this->form('projeto/historico/form',$data);
+		}else{
+			$this->semRegistro();
+		}
+	}
+/**********************************************************************/
+	public function saveHistorico($idUser=NULL,$id=NULL){
+		if ($this->input->post()){
+			$user = $this->ion_auth->user()->row();
+			$o = new Projeto_Historico($id);
+			$o->texto = $this->input->post('texto');
+			$o->projeto_id = $this->input->post('idUser');
+			$o->dataNextContato = $this->brdate->Padrao2Banco($this->input->post('dataNextContato'));
+			$o->dataRegistro = date("Y-m-d");
+			$o->user_id = $user->id;
+			if($o->save()){
+				redirect(base_url("projetos/edit/$idUser"));
+			}else{
+				$data['idUser'] = $idUser;
+				$data['id'] = $id;
+				$data['obj'] = $o;
+				$data['action'] = "projetos/saveHistorico/$idUser/$id";
+				$this->form('projeto/historico/form',$data);
+			}
+		}
+	}
+/**********************************************************************/
+	public function destroyHistorico($idUser,$id){
+		$o = new Projeto_Historico($id);
+		if($o->exists()){
+			$o->delete();
+			redirect(base_url("projetos/edit/$idUser"));
+		}else{
+			$this->semRegistro();
+		}
+	}
+/**********************************************************************/
 	private function _contatos(){
 		$o = new Contato();
 		return $o->get()->all_to_single_array('nome');

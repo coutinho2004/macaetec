@@ -11,9 +11,8 @@
 		<div class="row">
 			<div class="col-md-8 col-xs-3">
 				<?php
-					$url = ($this->idTipoVenda==1)?'funil_observacao':'follow_observacao';
 					echo anchor(
-						base_url("{$url}/add/{$obj->id}/"),
+						base_url("projetos/addObservacao/{$obj->id}/"),
 						'<i class="glyphicon glyphicon-plus"></i>',
 						'class="btn btn-success btn-sm" data-tooltip="tooltip" data-placement="top" title="Adicionar Dados"'
 					);
@@ -41,18 +40,16 @@
 					<td><?=$o->texto?></td>
 					<td>
 						<?php
-							$url = ($this->idTipoVenda==1)?'funil_observacao':'follow_observacao';
 							echo anchor(
-								base_url("{$url}/edit/{$obj->id}/{$o->id}"),
+								base_url("projetos/editObservacao/{$obj->id}/{$o->id}"),
 								'<i class="glyphicon glyphicon-edit"></i>',
 								'class="btn btn-sm btn-success" data-tooltip="tooltip" data-placement="top" title="Editar"'
 							);
 						?>
 						<?php
 							if($this->ion_auth->in_group(1)){
-								$url = ($this->idTipoVenda==1)?'funil_observacao':'follow_observacao';
 								echo anchor(
-									base_url("{$url}/destroy/{$obj->id}/{$o->id}"),
+									base_url("projetos/destroyObservacao/{$obj->id}/{$o->id}"),
 									'<i class="glyphicon glyphicon-trash"></i>',
 									'onclick="return confirm(\'Deseja prosseguir com a exclusão..???\');" class="btn btn-sm btn-danger" data-tooltip="tooltip" data-placement="top" title="Excluir"'
 								);

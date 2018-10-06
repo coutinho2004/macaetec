@@ -12,7 +12,7 @@
 			<div class="col-md-8 col-xs-3">
 				<?php
 					echo anchor(
-						base_url("funil_historico/add/{$obj->id}/"),
+						base_url("projetos/addHistorico/{$obj->id}/"),
 						'<i class="glyphicon glyphicon-plus"></i>',
 						'class="btn btn-success btn-sm" data-tooltip="tooltip" data-placement="top" title="Adicionar Dados"'
 					);
@@ -28,8 +28,9 @@
 		<table class="table table-hover table-condensed">
 			<thead>
 				<tr>
-					<th class="header">#</th>
+					<th class="header">Data do Registro</th>
 					<th>Texto</th>
+					<th class="header">Data para Contato</th>
 					<th class="red header" align="right" width="120">Ação</th>
 				</tr>
 			</thead>
@@ -38,10 +39,11 @@
 				<tr>
 					<td><?=$this->brdate->Banco2Padrao($o->dataRegistro)?></td>
 					<td><?=$o->texto?></td>
+					<td><?=$this->brdate->Banco2Padrao($o->dataNextContato)?></td>
 					<td>
 						<?php
 							echo anchor(
-								base_url("funil_historico/edit/{$obj->id}/{$o->id}"),
+								base_url("projetos/editHistorico/{$obj->id}/{$o->id}"),
 								'<i class="glyphicon glyphicon-edit"></i>',
 								'class="btn btn-sm btn-success" data-tooltip="tooltip" data-placement="top" title="Editar"'
 							);
@@ -49,7 +51,7 @@
 						<?php
 							if($this->ion_auth->in_group(1)){
 								echo anchor(
-									base_url("funil_historico/destroy/{$obj->id}/{$o->id}"),
+									base_url("projetos/destroyHistorico/{$obj->id}/{$o->id}"),
 									'<i class="glyphicon glyphicon-trash"></i>',
 									'onclick="return confirm(\'Deseja prosseguir com a exclusão..???\');" class="btn btn-sm btn-danger" data-tooltip="tooltip" data-placement="top" title="Excluir"'
 								);

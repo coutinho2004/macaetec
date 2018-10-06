@@ -10,7 +10,14 @@
 			<ul class="nav navbar-nav navbar-right pull-right">
 				<li class="dropdown hidden-xs">
 					<a href="#" data-target="#" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">
-						<i class="md md-notifications"></i> <span class="badge badge-xs badge-danger">0</span>
+						<i class="md md-notifications"></i> <span class="badge badge-xs badge-danger">
+							<?php
+								$user = $this->ion_auth->user()->row();
+								$o = new Projeto_Historico();
+								$dados = $o->notificacao($user->id);
+								echo($dados['total']);
+							?>
+						</span>
 					</a>
 					<?php $this->load->view('layouts/notificacao')?>
 				</li>
