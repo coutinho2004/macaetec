@@ -8,19 +8,7 @@
 				<span class="clearfix"></span>
 			</div>
 			<ul class="nav navbar-nav navbar-right pull-right">
-				<li class="dropdown hidden-xs">
-					<a href="#" data-target="#" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">
-						<i class="md md-notifications"></i> <span class="badge badge-xs badge-danger">
-							<?php
-								$user = $this->ion_auth->user()->row();
-								$o = new Projeto_Historico();
-								$dados = $o->notificacao($user->id);
-								echo($dados['total']);
-							?>
-						</span>
-					</a>
-					<?php $this->load->view('layouts/notificacao')?>
-				</li>
+				<?php $this->load->view('layouts/notificacao')?>
 				<li class="hidden-xs">
 					<a href="#" id="btn-fullscreen" class="waves-effect waves-light"><i class="md md-crop-free"></i></a>
 				</li>

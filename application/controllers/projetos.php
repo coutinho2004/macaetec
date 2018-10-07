@@ -60,13 +60,7 @@ class Projetos extends CI_Controller {
 		})
 		->column('Empresa', 'empresa')*/
 		->column('Ações', 'id', function ($data, $row){
-			if($row['idTipo']==1){
-				$str = '<a href="'.site_url("funil/edit/{$row['id']}").'" class="btn btn-info btn-xs"><span class="fa fa-pencil"></span> </a>';
-			}else{
-				$str = '<a href="'.site_url("follow/edit/{$row['id']}").'" class="btn btn-info btn-xs"><span class="fa fa-pencil"></span> </a>';
-			}
-			//$str .= '<a href="'.site_url("follow/edit/{$row['id']}").'" class="btn btn-primary btn-xs"><span class="fa fa-filter"></span> </a>';
-			return $str;
+			return '<a href="'.site_url("projetos/edit/{$row['id']}").'" class="btn btn-info btn-xs"><span class="fa fa-pencil"></span> </a>';
 		});
 
 		$t->init();

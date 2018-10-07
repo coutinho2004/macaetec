@@ -59,8 +59,8 @@ class Contatos extends CI_Controller {
 		})
 		->column('Empresa', 'empresa')
 		->column('Ações', 'id', function ($data, $row){
-			$str = '<a href="'.site_url("contatos/edit/{$row['empresa_id']}/{$row['id']}").'" class="btn btn-info btn-xs"><span class="fa fa-pencil"></span> </a> | ';
-			$str .= '<a href="'.site_url("funil/listarContato/{$row['id']}").'" class="btn btn-success btn-xs"><span class="fa fa-filter"></span> </a>';
+			$str = '<a href="'.site_url("contatos/edit/{$row['empresa_id']}/{$row['id']}").'" class="btn btn-info btn-xs"><span class="fa fa-pencil"></span></a>';
+			//$str .= ' | <a href="'.site_url("funil/listarContato/{$row['id']}").'" class="btn btn-success btn-xs"><span class="fa fa-filter"></span> </a>';
 			return $str;
 		});
 
